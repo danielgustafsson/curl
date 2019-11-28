@@ -1411,8 +1411,10 @@ static CURLcode nss_init(struct Curl_easy *data)
   if(result)
     return result;
 
-  if(!any_cipher_enabled())
-    NSS_SetDomesticPolicy();
+  if(!any_cipher_enabled()) {
+    if (NSS_SetDomesticPolicy() != SECSuccess)
+      return CURLE_SSL_CIPHER;
+  }
 
   initialized = 1;
 
