@@ -568,7 +568,7 @@ gtls_connect_step1(struct Curl_easy *data,
   if(SSL_CONN_CONFIG(version) == CURL_SSLVERSION_TLSv1_3) {
     if(!tls13support) {
       failf(data, "This GnuTLS installation does not support TLS 1.3");
-      return curle_ssl_connect_error;
+      return CURLE_SSL_CONNECT_ERROR;
     }
   }
 
